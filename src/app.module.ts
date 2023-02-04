@@ -1,18 +1,11 @@
+import { env } from './config';
+import { MongooseModule } from '@nestjs/mongoose';
 import { Module } from '@nestjs/common';
-import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
-import { BookmarkModule } from './bookmark/bookmark.module';
-import { PrismaModule } from './prisma/prisma.module';
-import { ConfigModule } from '@nestjs/config';
+import { ItemsModule } from './items/items.module';
+
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    AuthModule,
-    UserModule,
-    BookmarkModule,
-    PrismaModule,
-  ],
+  imports: [ItemsModule, MongooseModule.forRoot(env.MONGO_URL)],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
